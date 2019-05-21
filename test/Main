@@ -1,0 +1,37 @@
+import re
+t= '''
+<h4>Session 2: Panel Discussion</h4>
+<p>5:00PM - 6:00PM, ICC Capital Suite Room 7+12</p>
+<p><strong>Chair:</strong> Wendy Hall</p>
+<p><strong>Subject:</strong> How we create policies around investment in AI research and education, social policies such as in security, privacy and safety issues of AI.</p>
+<p><strong>Panelists:</strong> Sana Khareghani, Ed Felton, William Carter, Bo Zhang, Maarten de Rijke, Tze-Yun Leong, Ott Velsberg</p>
+<hr>
+<h3>Speakers and Panelists</h3>
+
+<table style="font-size: 0.9em;">
+
+<tr style="border-bottom: 1px solid #cccccc;"><td style="padding: 15px; margin-bottom: 35px; height: 250px; vertical-align: top" ><img src="http://www.kdd.org/kdd2018/files/wendy-hall-250.jpg" style="vertical-align: top; width: 150px; height: 150px; margin-right: 10px; "></td><td style="vertical-align: top; margin-bottom: 35px; padding: 15px; "><p><strong>Wendy Hall</strong><br>Regius Professor of Computer Science, University of Southampton</p><p>Dame Wendy Hall, DBE, FRS, FREng is Regius Professor of Computer Science, Pro Vice-Chancellor (International Engagement) at the University of Southampton and is the Executive Director of the Web Science Institute. </p>
+
+<p>  With Sir Tim Berners-Lee and Sir Nigel Shadbolt she co-founded the Web Science Research Initiative in 2006 and is the Managing Director of the Web Science Trust, which has a global mission to support the development of research, education and thought leadership in Web Science.</p>
+</td>
+</tr>
+</table>
+'''
+key = re.split('<.*?>|[\(,.+:-]|\d|\n',t)
+newt=''
+for num in key:
+    if len(num)>0:
+        newt += ' '+num
+li=newt.split()
+li.sort()
+set1=set(li)
+list2=list(set1)
+dir1={}
+for i in range(len(list2)):
+    dir1[list2[i]]=0
+    for y in range(len(li)):
+        if list2[i]==li[y]:
+            dir1[list2[i]]+=1
+dir2=sorted(dir1.items(),key =lambda d:d[0])
+for key1 in range(len(dir2)):
+    print (dir2[key1])
